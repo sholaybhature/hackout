@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { Link } from 'react-router-dom'
 
 import { ReactComponent as HomeIcon } from '../svg/home-24px.svg';
 import { ReactComponent as MapIcon } from '../svg/explore-24px.svg';
@@ -84,20 +85,24 @@ export default function MiniDrawer() {
         {/* <Divider /> */}
         <div className = 'pad'></div>
         <List>
+          <Link to = "/" className = 'list-buttonlink'>
             <ListItem button key='Home' className = 'list-button'>
               <ListItemIcon><HomeIcon className = "svg_icons"/></ListItemIcon>
               <ListItemText primary='Home' className = 'list-text' />
             </ListItem>
-
+          </Link>
+          <Link to = "/map" className = 'list-buttonlink'>
             <ListItem button key='Map' className = 'list-button'>
               <ListItemIcon><MapIcon className = "svg_icons"/></ListItemIcon>
               <ListItemText primary='Map' className = 'list-text' />
             </ListItem>
-
+          </Link>
+          <Link to = "/about" className = 'list-buttonlink'>
             <ListItem button key='About' className = 'list-button'>
               <ListItemIcon><AboutIcon className = "svg_icons"/></ListItemIcon>
               <ListItemText primary='About' className = 'list-text' />
             </ListItem>
+          </Link>
         </List>
       </Drawer>
     </div>
