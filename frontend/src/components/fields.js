@@ -3,31 +3,30 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-        width: '25ch',
+        width: '50ch',
         display: 'flex',
     },
   },
   textSpace: {
-    marginTop: '2%',
-    marginLeft: '7%',
+    marginTop: '4%',
+    marginLeft: '12%',
   }, 
   buttonSpace: {
-    marginTop: '2%',
+    marginTop: '4%',
     marginLeft: '7%',
     width: '62ch',
     height: '5vh',
   },
   formControl: {
     // margin: theme.spacing(1),
-    marginLeft: '7%',
-    marginTop: '2%',
+    marginLeft: '12%',
+    marginTop: '4%',
     minWidth: 120,
   },
 }));
@@ -44,20 +43,16 @@ export default function Fields() {
   return (
     <div>
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="filled-basic" label="Full Name" variant="filled"  className={classes.textSpace}/>
-            {/* <TextField id="filled-basic" label="Location" variant="filled" className={classes.textSpace}/> */}
-            <Button variant="outlined" color="primary" className={classes.buttonSpace}>
-                <div className = "field-text">
-                    lol
-                </div>
-            </Button>
+            <TextField id="filled-basic" label={<span className="button_text">Full Name</span>} variant="filled"  className={classes.textSpace}/>
+            
             <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-filled-label">Disrepair</InputLabel>
+                <InputLabel id="demo-simple-select-filled-label" className="button_text">Disrepair</InputLabel>
                 <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 value={age}
                 onChange={handleChange}
+                className="button_text"
                 >
                     <MenuItem value="">
                         <em>None</em>
@@ -70,7 +65,8 @@ export default function Fields() {
                     <MenuItem value={'OR'}>Other</MenuItem>
                 </Select>
             </FormControl>
-            <TextField id="filled-basic" label="Phone Number" variant="filled" className={classes.textSpace}/>
+
+            <TextField id="filled-basic" label={<span className="button_text">Phone Number</span>} variant="filled" className={classes.textSpace}/>
         </form>
   </div>
   );

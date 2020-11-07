@@ -22,6 +22,7 @@
 
 .field-text {
   font-family: 'Montserrat', sans-serif !important;
+  font-weight: bold;
   text-align: left !important;
 }
 
@@ -43,16 +44,45 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 55px 55% auto;
-  grid-template-rows: auto;
+  /* grid-template-columns: 55px 55% auto;
+  grid-template-rows: auto; */
+  grid-template-columns: 55px 55% 42.15%;
+  grid-template-rows: 95% 5%;
   height: 100vh;
 }
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  font-size: 30px;
   text-align: center;
+  /* border: 1px solid #000000; */
+}
+
+.grid-item-footer {
+  text-align: center;
+  grid-column: 2/4;
+  /* border: 1px solid #000000; */
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  grid-template-rows: auto;
+
+}
+
+.grid2-item1 {
+  align-items: left;
+  padding-top: 7%;
+}
+
+.grid2-item {
+  align-items: left;
+}
+
+.footer-text {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bolder;
+  font-size: 115%;
+  color: #949396
 }
 
 .grid-item-map {
@@ -60,11 +90,28 @@
 }
 
 .Heading-Text {
-  
   text-align: left !important;
   padding-left: 7%;
   padding-top: 3%;
   font-size: 3rem;
+  color: #3f51b5;
+}
+
+.Heading-Text:hover {
+  color: black
+}
+
+.home-text {
+  font-size: 200%;
+  text-align: left;
+  padding-left: 7%;
+  padding-bottom: 20px;
+}
+
+.button-align {
+  display: flex;
+  align-self: left;
+  padding-left: 36.5%;
 }
 
 .forms {
@@ -76,6 +123,8 @@
 .button_text
 {
   text-align: left;
+  font-family: 'Montserrat', sans-serif !important;
+
 }
 
 .App-header {
