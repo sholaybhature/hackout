@@ -4,6 +4,7 @@ import Fields from './fields'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import '../App.css';
+import Map from'./map'
 
 const useStyles = makeStyles((theme) => ({
     buttonSpace: {
@@ -59,14 +60,16 @@ export default function Home()
             </div>
           </div>
 
-          <div className = "grid-item">
+          {/* <div className = "grid-item">
             
           </div>
 
           <div className = "grid-item">
 
+          </div> */}
+          <div className = "grid-item-map">
+            <Map></Map>
           </div>
-
           <div className = "grid-item-footer">
             <div className = "footer-text">
               Developed by BAKAET

@@ -45,6 +45,7 @@
 .grid-home {
   display: grid;
   grid-template-columns: 55px 55% 42.15%;
+  /* grid-template-columns: 55px 55% auto; */
   grid-template-rows: 95% 5%;
   height: 100vh;
 }
@@ -54,6 +55,10 @@
   grid-template-columns: 55px 97.15%;
   grid-template-rows: 95% 5%;
   height: 100vh;
+}
+
+.grid-item-map {
+  position: relative;
 }
 
 .grid-item {
