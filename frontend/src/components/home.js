@@ -12,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
       width: '23.25ch',
       height: '5vh',
     },
+    buttonSpace2: {
+      marginTop: '16%',
+      marginLeft: '12%',
+      width: '23.25ch',
+      height: '5vh',
+    },
   }));
 
 export default function Home()
@@ -39,6 +45,7 @@ export default function Home()
                 <div></div>
                 <Fields />
                 <div className = "button-align">
+
                   <Button 
                     variant="outlined" 
                     color="primary" 
@@ -51,6 +58,26 @@ export default function Home()
                           Get Location
                       </div>
                   </Button>
+                  
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    style={{ display: 'none' }}
+                    id="raised-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="raised-button-file">
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      component="span"
+                      className={classes.buttonSpace2}>
+                        <div className = "field-text">
+                          Upload Image
+                        </div>
+                    </Button>
+                  </label> 
                 </div>
               </div>
 
