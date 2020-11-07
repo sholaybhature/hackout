@@ -70,10 +70,8 @@ export default function Home()
           <div className = "grid-item-map">
             <Map></Map>
           </div>
-          <div className = "grid-item-footer">
-            <div className = "footer-text">
-              Developed by BAKAET
-            </div>
+          <div className = "footer">
+              A crowdsourced initiative.
           </div>
         </div>
     </div>

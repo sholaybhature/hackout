@@ -72,11 +72,11 @@
   /* border: 1px solid #000000; */
 }
 
-.grid-item-footer {
+/* .grid-item-footer {
   text-align: center;
   grid-column: 2/4;
-  /* border: 1px solid #000000; */
-}
+  /* border: 1px solid #000000;
+} */
 
 .grid2 {
   display: grid;
@@ -94,12 +94,12 @@
   align-items: left;
 }
 
-.footer-text {
+/* .footer-text {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: bolder;
   font-size: 115%;
   color: #949396
-}
+} */
 
 .Heading-Text {
   text-align: left !important;
@@ -120,6 +120,23 @@
   padding-bottom: 20px;
 }
 
+.about-heading {
+  text-align: left !important;
+  font-size: 3rem;
+  color: #3f51b5;
+}
+
+.about-text {
+  font-size: 200%;
+  text-align: justify;
+}
+
+.about-container {
+  padding-left: 4%;
+  padding-right: 6%;
+  padding-top: 3%;
+}
+
 .button-align {
   display: flex;
   align-self: left;
@@ -136,7 +153,6 @@
 {
   text-align: left;
   font-family: 'Montserrat', sans-serif !important;
-
 }
 
 .App-header {
@@ -148,6 +164,22 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.footer {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bolder;
+  font-size: 115%;
+  color: #949396;
+  position: absolute;
+  bottom: 1.69%;
+  left: 45%;
+}
+
+.git-icon {
+  position: absolute;
+  bottom: 12.69%;
+  left: 50%;
 }
 
 @keyframes App-logo-spin {
