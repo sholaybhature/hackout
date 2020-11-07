@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './components/home'
+import About from './components/about'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className = "App">
         <Route exact path = "/" component = {Home} />
-        <Route exact path = "/about" component = {Home} />
+        <Route exact path = "/about" component = {About} />
         <Route exact path = "/map" component = {Home} />
       </div>
     </BrowserRouter>  
