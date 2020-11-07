@@ -1,44 +1,53 @@
 from django.shortcuts import render
 
-# Create your views here.
 from django.http import HttpResponse
+
+from django_filters import rest_framework as filters
 
 from .models import *
 from .serializers import *
+
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
+
 from geopy.point import Point
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic 
-from django.db.models import F, Sum
+
 
 class LocationList(generics.ListAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-
+    filterset_fields = ('latitude', 'longitude', 'variant', 'radius')
 
 class LocationCreate(generics.CreateAPIView):
     serializer_class = LocationSerializer
 
     def post(self, request, format=None):
 
+        # Get latitutde,longitude and variant from the POST data
         lat = request.data['latitude']
         longi = request.data['longitude']
+        variant = request.data['variant']
 
+        # Try to get name of the city from the coordinates
+        try:
+            geolocator = Nominatim(user_agent="direpair")
+            location = geolocator.reverse(Point(lat, longi), language='en',exactly_one=True)
+            loc = location.raw
+            loc_dict = location.raw
 
-        geolocator = Nominatim(user_agent="direpair")
-        location = geolocator.reverse(Point(lat, longi), language='en',exactly_one=True)
-        loc = location.raw
-        loc_dict = location.raw
+            if "county" in loc_dict['address']:
+                area = loc_dict['address']['county']
 
-        if "county" in loc_dict['address']:
-            area = loc_dict['address']['county']
+            elif "city" in loc_dict['address']:
+                area = loc_dict['address']['city']
+            else: 
+                area = ''
 
-        elif "city" in loc_dict['address']:
-            area = loc_dict['address']['city']
-        else: 
-            area = ''
+        except Exception as e:
+            pass
 
         serializer = LocationSerializer(data={
             'area': area,
@@ -47,26 +56,47 @@ class LocationCreate(generics.CreateAPIView):
             'radius': request.data['radius'],
             'variant': request.data['variant'],
             })
-            
+
         if serializer.is_valid():
-            SumCord = Location.objects.all().\
-            annotate(sum=F('latitude') + F('longitude')
-            )
-            coord_lower = SumCord.filter(sum__lte=float(lat)+float(longi)).order_by('latitude', 'longitude').first()
-            coord_higher = SumCord.filter(sum__gte=float(lat)+float(longi)).order_by('latitude', 'longitude').last()
-            print(coord_lower)
-            print(coord_higher)
-            if abs(coord_lower.longitude+coord_lower.latitude - (float(lat)+float(longi))) < abs(coord_higher.longitude+coord_higher.latitude - (float(lat)+float(longi))):
-                coord = coord_lower
-            else:
-                coord = coord_higher
-            print(coord)
-            coord_points = (coord.latitude, coord.longitude)
+
+            # This should go in serializers.py, should use GeoDjango
+            
+            """
+            Checks nearby coordinates, four choice of coordinates available.
+            i)   Less than, Less than
+            ii)  Less than, Greater than
+            iii) Greater than, Greater than
+            iv)  Greater than, Less than
+            Check the distance of current lat and longi to these points.
+            If distance is less than 0.5kilometre, increase the radius of 
+            the nearest coordinate.
+            """
+
+            coord_lower_ = Location.objects.filter(latitude__lte=lat, longitude__lte=longi, variant=variant).last()
+            coord_lower = Location.objects.filter(latitude__lte=lat, longitude__gte=longi,variant=variant).last()
+            coord_greater_ = Location.objects.filter(latitude__gte=lat, longitude__gte=longi,variant=variant).last()
+            coord_greater = Location.objects.filter(latitude__gte=lat, longitude__lte=longi,variant=variant).last()
+
             current_points = (lat,longi) 
-            km = geodesic(coord_points, current_points).km
-            print(km)
+            ls = [coord_lower_,coord_lower, coord_greater_,coord_greater]
+            change_radius = False
+            
+            for i in ls:
+ 
+                try:
+                    coord_points = (i.latitude, i.longitude)
+                    km = geodesic(coord_points, current_points).km
+                    if km < 0.5:
+                        index = i
+                        change_radius = True
+                except Exception as e:
+                    continue
+                
+            if change_radius == True:
+                index.radius += 1
+                index.save() 
+           
             serializer.save()
-            # coord_higher = Location.objects.filter(rating__gte=user_rating).order_by('rating').first()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

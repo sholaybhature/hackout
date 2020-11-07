@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import MiniDrawer from './components/navbar'
 import Fields from './components/fields'
+import Map from'./components/map'
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
             </h1>
             <Fields />
           </div>
-          <div className = "grid-item">
-
+          <div className = "grid-item-map">
+            <Map></Map>
           </div>
         </div>
         
