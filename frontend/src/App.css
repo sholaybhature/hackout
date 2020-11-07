@@ -115,6 +115,13 @@
   padding-bottom: 20px;
 }
 
+.about-text {
+  font-size: 140%;
+  text-align: center;
+  padding-left: 7%;
+  padding-top: 12%;
+}
+
 .button-align {
   display: flex;
   align-self: left;

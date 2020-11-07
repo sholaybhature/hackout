@@ -46,7 +46,7 @@ export default function Fields() {
             <TextField id="filled-basic" label={<span className="button_text">Full Name</span>} variant="filled"  className={classes.textSpace}/>
             
             <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-filled-label" className="button_text">Disrepair</InputLabel>
+                <InputLabel id="demo-simple-select-filled-label" className="button_text">Choose a Disrepair</InputLabel>
                 <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"

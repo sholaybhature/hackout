@@ -1,12 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -53,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MiniDrawer() {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -91,18 +87,21 @@ export default function MiniDrawer() {
               <ListItemText primary='Home' className = 'list-text' />
             </ListItem>
           </Link>
+
           <Link to = "/map" className = 'list-buttonlink'>
             <ListItem button key='Map' className = 'list-button'>
               <ListItemIcon><MapIcon className = "svg_icons"/></ListItemIcon>
               <ListItemText primary='Map' className = 'list-text' />
             </ListItem>
           </Link>
+
           <Link to = "/about" className = 'list-buttonlink'>
             <ListItem button key='About' className = 'list-button'>
               <ListItemIcon><AboutIcon className = "svg_icons"/></ListItemIcon>
               <ListItemText primary='About' className = 'list-text' />
             </ListItem>
           </Link>
+
         </List>
       </Drawer>
     </div>
