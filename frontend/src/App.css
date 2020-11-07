@@ -52,7 +52,8 @@
   display: grid;
   grid-template-columns: 55px 55% 42.15%;
   /* grid-template-columns: 55px 55% auto; */
-  grid-template-rows: 95% 5%;
+  /* grid-template-rows: 95% 5%; */
+  grid-template-rows: auto;
   height: 100vh;
 }
 

@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('list/', views.LocationList.as_view()),
     path('post/', views.LocationCreate.as_view()),
+    path('update/<int:pk>/', views.LocationUpdate.as_view()),
 ]

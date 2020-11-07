@@ -30,11 +30,14 @@ class Location(TimeStampModel):
         (OTHER, 'Other'),
     ]
 
+    name = models.CharField(max_length=100, blank=True)
     area = models.CharField(max_length=100, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    radius = models.FloatField()
+    radius = models.IntegerField(default=1, blank=True)
+    upvotes = models.IntegerField(blank=True, default=0)
     variant = models.CharField(max_length=2, choices=CHOICES, default="RD")
+    pic = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
 
     def __str__(self):
         return 'Longitude:{} Latitude:{}'.format(self.longitude, self.latitude)

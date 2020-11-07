@@ -21,6 +21,10 @@ class LocationList(generics.ListAPIView):
     serializer_class = LocationSerializer
     filterset_fields = ('latitude', 'longitude', 'variant', 'radius')
 
+class LocationUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+
 class LocationCreate(generics.CreateAPIView):
     serializer_class = LocationSerializer
 
@@ -49,13 +53,17 @@ class LocationCreate(generics.CreateAPIView):
         except Exception as e:
             pass
 
-        serializer = LocationSerializer(data={
-            'area': area,
-            'latitude': request.data['latitude'],
-            'longitude': request.data['longitude'],
-            'radius': request.data['radius'],
-            'variant': request.data['variant'],
-            })
+        # earlier checked area in backend, now checked in frontend itself
+        # serializer = LocationSerializer(data={
+        #     'name': request.data['name'],
+        #     'area': request.data['area'],
+        #     'latitude': request.data['latitude'],
+        #     'longitude': request.data['longitude'],
+        #     'radius': request.data['radius'],
+        #     'upvotes': request.data['upvotes'],
+        #     'variant': request.data['variant'],
+        #     })
+        serializer = LocationSerializer(data=request.data)
 
         if serializer.is_valid():
 
@@ -100,3 +108,4 @@ class LocationCreate(generics.CreateAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
