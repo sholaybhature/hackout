@@ -42,11 +42,16 @@
   }
 }
 
-.grid {
+.grid-home {
   display: grid;
-  /* grid-template-columns: 55px 55% auto;
-  grid-template-rows: auto; */
   grid-template-columns: 55px 55% 42.15%;
+  grid-template-rows: 95% 5%;
+  height: 100vh;
+}
+
+.grid-about {
+  display: grid;
+  grid-template-columns: 55px 97.15%;
   grid-template-rows: 95% 5%;
   height: 100vh;
 }
@@ -83,10 +88,6 @@
   font-weight: bolder;
   font-size: 115%;
   color: #949396
-}
-
-.grid-item-map {
-  position: relative;
 }
 
 .Heading-Text {
