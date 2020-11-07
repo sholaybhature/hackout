@@ -20,7 +20,7 @@ export default function About() {
                 </div>
             </div>
             <div className = 'git-icon'>
-                <a href = "https://github.com/reedkihaddi/hackout">
+                <a href = "https://github.com/reedkihaddi/hackout" target="_blank" rel="noreferrer">
                     <img src = {GitLogo} alt = "GitHub Logo" className = "svg_icons"/>
                 </a>
             </div>
