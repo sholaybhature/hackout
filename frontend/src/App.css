@@ -26,6 +26,12 @@
   text-align: left !important;
 }
 
+.list-buttonlink {
+  font-family: 'Montserrat', sans-serif !important;
+  color: black;
+  text-decoration: none;
+}
+
 .list-button span{
   padding-top: 1.8vh;
   padding-bottom: 1.8vh;
