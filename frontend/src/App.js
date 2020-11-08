@@ -19,7 +19,7 @@ function App() {
         <Route exact path = "/" component = {Home} />
         <Route exact path = "/about" component = {About} />
         <Route exact path = "/map" component = {MapPage} />
-        <Route exact path="/:id" component={LocationInfo}/>
+        <Route exact path = "/location/:id" component={LocationInfo}/>
       </div>
     </BrowserRouter>  
   );

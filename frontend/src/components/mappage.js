@@ -72,14 +72,14 @@ export default function MapPage({ data }) {
       <div>
         {dataReady ?
           <div>
-            {/* <ul className="map-legend">
+            <ul className="map-legend-page">
             <li className="list-item">Road<span className="list-road"></span></li>
             <li className="list-item">Street Light<span className="list-light"></span></li>
             <li className="list-item">Public Washroom<span className="list-washroom"></span></li>
             <li className="list-item">Sewage<span className="list-sewage"></span></li>
             <li className="list-item">Garbage<span className="list-garbage"></span></li>
             <li className="list-item">Other<span className="list-other"></span></li>
-          </ul> */}
+          </ul>
             <DeckGL
               initialViewState={initialViewState}
               controller={true}

@@ -8,6 +8,7 @@ import Map from './map'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useHistory } from "react-router-dom";
+import  { Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   buttonSpace: {
@@ -109,7 +110,7 @@ export default function Home() {
     .then(res => res.json()).then((repos) => {
       setResData(repos)
       setShowPopUp(true)
-      history.push(`/${repos.id}`);
+      history.push(`/location/${repos.id}`);
     });
   }
 

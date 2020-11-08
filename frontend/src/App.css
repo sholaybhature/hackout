@@ -189,19 +189,69 @@
   bottom: 5%;
   z-index: 100;
   list-style-type: square;
+  
+}
+
+.map-legend-page {
+  position: absolute;
+  bottom: 5%;
+  right: 2.5%;
+  z-index: 100;
+  list-style-type: square;
+  
 }
 
 /* .list-item {
   padding-right: 5vw;
 } */
 
-/* .list-road{
+.list-road{
   height: 0.5vw;
   width: 0.5vw;
-  background-color: #bbb;
+  background-color: rgba(95, 23, 219, 100);
   border-radius: 50%;
   display: inline-block;
-} */
+}
+
+.list-light{
+  height: 0.5vw;
+  width: 0.5vw;
+  background-color: rgba(17, 205, 216, 100);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.list-washroom{
+  height: 0.5vw;
+  width: 0.5vw;
+  background-color: rgba(234, 216, 191, 100);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.list-sewage{
+  height: 0.5vw;
+  width: 0.5vw;
+  background-color: rgba(195, 93, 71, 100);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.list-garbage {
+  height: 0.5vw;
+  width: 0.5vw;
+  background-color: rgba(223, 34, 230, 100);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.list-other {
+  height: 0.5vw;
+  width: 0.5vw;
+  background-color: rgba(29, 24, 31, 100);
+  border-radius: 50%;
+  display: inline-block;
+}
 
 @keyframes App-logo-spin {
   from {

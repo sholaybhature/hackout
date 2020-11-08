@@ -121,7 +121,6 @@ const LocationInfo = () => {
         bearing: 0,
     };
     const location = useLocation();
-    console.log(location.pathname);
     return (
         <div>
             <div className="center-button-container">
@@ -173,30 +172,7 @@ const LocationInfo = () => {
                         <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
                     </DeckGL>
                 </div>
-                {/* <DeckGL
-                    width="50%"
-                    height="50%"
-                    initialViewState={initialViewState}
-                    controller={true}
-                    layers={[
-                        new ScatterplotLayer({
-                            id: 'bart-stations',
-                            // data: [
-                            //   {name: 'Colma', passengers: 4214, coordinates: [-122.466233, 37.684638]},
-                            //   {name: 'Civic Center', passengers: 24798, coordinates: [-122.413756,37.779528]},
-                            // ],
-                            data: pointData,
-                            stroked: false,
-                            filled: true,
-                            // getPosition: d => d.coordinates,
-                            getPositon: d=> [d.longitude, d.latitude],
-                            getRadius: d => 10000000,
-                            getFillColor: [255, 200, 0]
-                          })
-                    ]}
-                >
-                    <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
-                </DeckGL> */}
+                
             </div>
         </div>
     );
