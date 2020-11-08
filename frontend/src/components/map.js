@@ -19,7 +19,7 @@ const ICON_MAPPING = {
 
 export default function Map(props) {
 
-  console.log(props)
+
 
   const [initialViewState, setInitialViewState] = useState({
     latitude: 22.5937,
@@ -70,7 +70,7 @@ export default function Map(props) {
     'OR': [29, 24, 31, 100]
   }
 
-  console.log(pointData.length)
+  console.log(colors[props.dis])
   return (
     <div>
       {dataReady ?
@@ -109,7 +109,9 @@ export default function Map(props) {
                 // getPosition: info['coordinate'],
                 getPosition: info['coordinate'],
                 getRadius: 100,
-                getFillColor: [255, 255, 0],
+                // getFillColor: [255, 255, 0],
+                getFillColor:  colors[props.dis],
+
                 // Enable picking
                 pickable: true,
                 // Update app state
@@ -117,6 +119,8 @@ export default function Map(props) {
               })
               ]);
               console.log(info)
+              props.onChangeValueHandlerLat(info['coordinate'][0])
+              props.onChangeValueHandlerLong(info['coordinate'][1])
             }}
 
           >

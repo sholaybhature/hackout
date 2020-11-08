@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class TimeStampModel(models.Model):
@@ -30,7 +31,9 @@ class Location(TimeStampModel):
         (OTHER, 'Other'),
     ]
 
-    name = models.CharField(max_length=100, blank=True)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    name = models.CharField(max_length=100, blank=True, default='Anonymous')
+    description = models.CharField(max_length=500, blank=True)
     area = models.CharField(max_length=100, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -38,6 +41,7 @@ class Location(TimeStampModel):
     upvotes = models.IntegerField(blank=True, default=0)
     variant = models.CharField(max_length=2, choices=CHOICES, default="RD")
     pic = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
+    mobile_number = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
         return 'Longitude:{} Latitude:{}'.format(self.longitude, self.latitude)

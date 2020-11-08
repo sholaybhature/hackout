@@ -66,23 +66,8 @@ export default function MapPage({data}) {
     'GB': [223, 34, 230, 100],
     'OR': [29, 24, 31, 100]
   }
-  // useEffect(() => {
-  //   if (dataReady == false) {
-  //     return
-  //   }
-  //   setInitialViewState({
-  //     longitude: props.longitude,
-  //     latitude: props.latitude,
-  //     zoom: 14,
-  //     pitch: 0,
-  //     bearing: 0,
-  //     transitionDuration: 5000,
-  //     transitionInterpolator: new FlyToInterpolator()
-  //   })
-  // }, [props.changeLocation == true])
 
   return (
-    //   <div class="my-container" style={{ height: '100vh', width: '41vw', position: 'relative' }}>
     <div>
         <MiniDrawer />
         <div>

@@ -97,12 +97,14 @@ class LocationCreate(generics.CreateAPIView):
                     if km < 0.5:
                         index = i
                         change_radius = True
+                        index.radius += 1
+                        index.save() 
                 except Exception as e:
                     continue
                 
-            if change_radius == True:
-                index.radius += 1
-                index.save() 
+            # if change_radius == True:
+            #     index.radius += 1
+            #     index.save() 
            
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
