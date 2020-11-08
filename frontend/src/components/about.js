@@ -15,7 +15,10 @@ export default function About() {
                         ABOUT US
                     </h1>
                     <div className = 'about-text'>
-                        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget ti
+                    Ayan Jain - B.E (EIC), Thapar Institute <br></br><br></br>
+                    Monark Jain - BCA, VIPS <br></br><br></br>
+                    Rohan Arora - B.A (Hons.) Economics, St. Stephen's College <br></br><br></br>
+                    Saurabh Brar - B.Sc (Hons.) Mathematics, Shivaji College <br></br><br></br>
                     </div> 
                 </div>
             </div>

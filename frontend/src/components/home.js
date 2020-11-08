@@ -125,13 +125,13 @@ export default function Home() {
           <h1 className="Heading-Text">DISREPAIR.IO</h1>
 
           <div className="home-text">
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
-            Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit
-            amet, wisi. Aenean fermentum, elit eget ti
+          Disrepair.IO is a public infrastructure repository with the aim
+          to collate public complaints of disrepairs hoping that a
+          collective voice brings about ground reality changes.
+          <br></br>
+          <br></br>
+          Fill in the following details then
+          click on the map to mark the location and submit to report any disrepair.
           </div>
 
           <div className="grid2">

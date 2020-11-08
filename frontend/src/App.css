@@ -211,3 +211,12 @@
     transform: rotate(360deg);
   }
 }
+
+.center-button-container {
+  text-align: right;
+  margin-right: 15%;
+}
+
+.button-vote{
+  margin-left: 5% !important;
+}
