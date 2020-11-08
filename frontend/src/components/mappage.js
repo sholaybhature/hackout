@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DeckGL from '@deck.gl/react';
-import {LineLayer} from '@deck.gl/layers';
-import {StaticMap} from 'react-map-gl';
+import { FlyToInterpolator } from 'deck.gl';
+import { LineLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
+import { StaticMap } from 'react-map-gl';
+
 import MiniDrawer from './navbar'
 import '../App.css'
 
@@ -29,18 +31,138 @@ export default function MapPage({data}) {
   const layers = [
     new LineLayer({id: 'line-layer', data})
   ];
+  const [initialViewState, setInitialViewState] = useState({
+    latitude: 22.5937,
+    longitude: 79.9629,
+    zoom: 4,
+    pitch: 0,
+    bearing: 0,
+  });
+  const [pointData, setPointData] = useState([]);
+  const [dataReady, setDataReady] = useState(false);
+  const [hotData, setHotData] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/list/")
+      .then(res => res.json())
+      .then((repos) => {
+        setPointData(repos)
+        setDataReady(true)
+      });
+    fetch("http://127.0.0.1:8000/api/list/?filter=upvotes")
+      .then(res => res.json())
+      .then((repos) => {
+        setHotData(repos)
+      });
+
+  }, [])
+
+  console.log(hotData)
+  const colors = {
+    'RD': [95, 23, 219, 100],
+    'SL': [17, 205, 216, 100],
+    'PW': [234, 216, 191, 100],
+    'SW': [195, 93, 71, 100],
+    'GB': [223, 34, 230, 100],
+    'OR': [29, 24, 31, 100]
+  }
+  // useEffect(() => {
+  //   if (dataReady == false) {
+  //     return
+  //   }
+  //   setInitialViewState({
+  //     longitude: props.longitude,
+  //     latitude: props.latitude,
+  //     zoom: 14,
+  //     pitch: 0,
+  //     bearing: 0,
+  //     transitionDuration: 5000,
+  //     transitionInterpolator: new FlyToInterpolator()
+  //   })
+  // }, [props.changeLocation == true])
 
   return (
     //   <div class="my-container" style={{ height: '100vh', width: '41vw', position: 'relative' }}>
     <div>
         <MiniDrawer />
+        <div>
+      {dataReady ?
+        <div>
+          <ul className="map-legend">
+            <li className="list-item">Road<span className="list-road"></span></li>
+            <li className="list-item">Street Light<span className="list-light"></span></li>
+            <li className="list-item">Public Washroom<span className="list-washroom"></span></li>
+            <li className="list-item">Sewage<span className="list-sewage"></span></li>
+            <li className="list-item">Garbage<span className="list-garbage"></span></li>
+            <li className="list-item">Other<span className="list-other"></span></li>
+          </ul>
+          <DeckGL
+            initialViewState={initialViewState}
+            controller={true}
+            layers={[
+              new ScatterplotLayer({
+                id: 'scatterplot',
+                data: pointData,
+                getPosition: d => [d.longitude, d.latitude],
+                getRadius: d => [d.radius * 100000],
+                getFillColor: d => colors[d.variant],
+                // Enable picking
+                pickable: true,
+                // Update app state
+                // onHover: info => setHoverInfo(info)
+              }),
+            ]}
+            onClick={(info, event) => {
+              
+            }}
+
+          >
+            {/* {hoverInfo.object && (
+              <div style={{ position: 'absolute', zIndex: 1, pointerEvents: 'none', left: hoverInfo.x, top: hoverInfo.y }}>
+                { hoverInfo.object.message}
+              </div>
+            )} */}
+            <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+          </DeckGL>
+        </div>
+        :
         <DeckGL
-        initialViewState={INITIAL_VIEW_STATE}
-        controller={true}
-        layers={layers}
+          initialViewState={initialViewState}
+          controller={true}
+          layers={[
+            new ScatterplotLayer({
+              id: 'scatterplot',
+              data,
+              getPosition: d => [42.45, 37.78],
+              getRadius: 500000,
+              getFillColor: [255, 255, 0],
+              // Enable picking
+              pickable: true,
+              // Update app state
+              // onHover: info => setHoverInfo(info)
+            }),
+          ]}
+          onClick={(info, event) => {
+            // setlayerState([])
+            // setlayerState(oldArray => [...oldArray,
+            // new ScatterplotLayer({
+            //   id: 'scatterplot',
+            //   data,
+            //   // getPosition: info['coordinate'],
+            //   getPosition: info['coordinate'],
+            //   getRadius: 100000,
+            //   getFillColor: [255, 255, 0],
+            //   // Enable picking
+            //   pickable: true,
+            //   // Update app state
+            //   // onHover: info => setHoverInfo(info)
+            // })]);
+          }}
         >
-        <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+          <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
         </DeckGL>
+      }
+    </div>
         <div className = 'footer'>
                 A crowdsourced initiative.
         </div>
