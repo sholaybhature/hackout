@@ -31,32 +31,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Fields() {
+const Fields = params => {
+
   const classes = useStyles();
 
-  const [age, setAge] = React.useState('');
-
   const handleChange = (event) => {
-    setAge(event.target.value);
+    params.setDis(event.target.value);
   };
 
   return (
-    <div>
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="filled-basic" label={<span className="button_text">Full Name</span>} variant="filled"  className={classes.textSpace}/>
+            <TextField
+              id="filled-basic"
+              label={<span className="button_text">Full Name</span>}
+              variant="filled"
+              className={classes.textSpace}
+              value = {params.name}
+              onChange = {e => params.setName(e.target.value)}
+            />
             
             <FormControl variant="filled" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-filled-label" className="button_text">Disrepair</InputLabel>
                 <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
-                value={age}
+                value={params.dis}
                 onChange={handleChange}
                 className="button_text"
                 >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
+                    <MenuItem value=""><em>None</em></MenuItem>
                     <MenuItem value={'RD'}>Road</MenuItem>
                     <MenuItem value={'SL'}>Street Light</MenuItem>
                     <MenuItem value={'PW'}>Public Washroom</MenuItem>
@@ -66,8 +69,16 @@ export default function Fields() {
                 </Select>
             </FormControl>
 
-            <TextField id="filled-basic" label={<span className="button_text">Phone Number</span>} variant="filled" className={classes.textSpace}/>
+            <TextField
+              id="filled-basic"
+              label={<span className="button_text">Phone Number</span>}
+              variant="filled"
+              className={classes.textSpace}
+              value = {params.number}
+              onChange = {e => params.setNumber(e.target.value)}
+            />
         </form>
-  </div>
   );
 }
+
+export default Fields;

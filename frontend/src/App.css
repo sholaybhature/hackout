@@ -88,7 +88,7 @@
 
 .grid2-item1 {
   align-items: left;
-  padding-top: 7%;
+  padding-top: 3%;
 }
 
 .grid2-item {
@@ -118,7 +118,8 @@
   font-size: 200%;
   text-align: left;
   padding-left: 7%;
-  padding-bottom: 20px;
+  padding-right: 4%;
+  /* padding-bottom: 20px; */
 }
 
 .about-heading {
@@ -141,7 +142,7 @@
 .button-align {
   display: flex;
   align-self: left;
-  padding-left: 36.5%;
+  padding-left: 16.5%;
 }
 
 .forms {
