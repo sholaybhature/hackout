@@ -23,11 +23,14 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    justifyContent: 'center'
   },
   hide: {
     display: 'none',
   },
   drawerOpen: {
+    justifyContent: 'center',
+    overflowX: 'hidden',
     width: drawerWidth,
     backgroundColor: '#e9e9e9',
     transition: theme.transitions.create('width', {
@@ -36,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerClose: {
+    justifyContent: 'center',
+
     backgroundColor: '#e9e9e9',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -48,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   content: {
+
     flexGrow: 1,
     padding: theme.spacing(3),
   },
@@ -84,8 +90,6 @@ export default function MiniDrawer() {
         onMouseOver={handleDrawerOpen}
         onMouseLeave={handleDrawerClose}
       >
-        {/* <Divider /> */}
-        <div className = 'pad'></div>
         <List>
           <Link to = "/" className = 'list-buttonlink'>
             <ListItem button key='Home' className = 'list-button'>

@@ -15,7 +15,6 @@ class Location(TimeStampModel):
     class Meta:
         ordering = ['id']
 
-
     ROAD = 'RD'
     STREETLIGHT = 'SL'
     PUBLICWASHROOM = 'PW'

@@ -1,38 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --color-light: white;
+  --color-dark: #212121;
+  --color-signal: #fab700;
+
+  --color-background: var(--color-light);
+  --color-text: var(--color-dark);
+  --color-accent: var(--color-signal);
+
+  --size-bezel: 0.5rem;
+  --size-radius: 4px;
+
+  line-height: 1.4;
+
+  font-family: "Inter", sans-serif;
+  font-size: calc(0.6rem + 0.4vw);
+  color: var(--color-text);
+  background: var(--color-background);
+  font-weight: 300;
+  padding: 0 calc(var(--size-bezel) * 3);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
 
 .App {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: white;
 }
 
-.svg_icons{
+.svg_icons {
   transform: scale(1.5) !important;
 }
 
-.pad {
-  padding-top: 12.5vh !important;
-}
+/* .pad {
+  padding-top: 30vh !important;
+} */
 
-.list-text span{
-  font-family: 'Montserrat', sans-serif !important;
+.list-text span {
+  font-family: "Montserrat", sans-serif !important;
   font-weight: bold;
   text-align: justify;
   font-size: 2vh;
 }
 
 .field-text {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-weight: bold;
   text-align: left !important;
 }
 
 .list-buttonlink {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   color: black;
   text-decoration: none;
 }
 
-.list-button span{
+.list-button span {
   padding-top: 1.8vh;
   padding-bottom: 1.8vh;
 }
@@ -83,7 +110,6 @@
   display: grid;
   grid-template-columns: 55% 45%;
   grid-template-rows: auto;
-
 }
 
 .grid2-item1 {
@@ -111,7 +137,7 @@
 }
 
 .Heading-Text:hover {
-  color: black
+  color: black;
 }
 
 .home-text {
@@ -151,10 +177,9 @@
   align-items: left !important;
 }
 
-.button_text
-{
+.button_text {
   text-align: left;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .App-header {
@@ -169,7 +194,7 @@
 }
 
 .footer {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-weight: bolder;
   font-size: 115%;
   color: #949396;
@@ -189,7 +214,6 @@
   bottom: 5%;
   z-index: 100;
   list-style-type: square;
-  
 }
 
 .map-legend-page {
@@ -198,14 +222,13 @@
   right: 2.5%;
   z-index: 100;
   list-style-type: square;
-  
 }
 
 /* .list-item {
   padding-right: 5vw;
 } */
 
-.list-road{
+.list-road {
   height: 0.5vw;
   width: 0.5vw;
   background-color: rgba(95, 23, 219, 100);
@@ -213,7 +236,7 @@
   display: inline-block;
 }
 
-.list-light{
+.list-light {
   height: 0.5vw;
   width: 0.5vw;
   background-color: rgba(17, 205, 216, 100);
@@ -221,7 +244,7 @@
   display: inline-block;
 }
 
-.list-washroom{
+.list-washroom {
   height: 0.5vw;
   width: 0.5vw;
   background-color: rgba(234, 216, 191, 100);
@@ -229,7 +252,7 @@
   display: inline-block;
 }
 
-.list-sewage{
+.list-sewage {
   height: 0.5vw;
   width: 0.5vw;
   background-color: rgba(195, 93, 71, 100);
@@ -267,6 +290,104 @@
   margin-right: 15%;
 }
 
-.button-vote{
+.button-vote {
   margin-left: 5% !important;
+}
+
+.parent-grid {
+  width: 100vw;
+  height: 100vh;
+}
+.map-location {
+  position: absolute;
+  left: 0%;
+  width: 50%;
+  height: 100%;
+}
+.info-location {
+  position: absolute;
+  overflow: hidden;
+  right: 0%;
+  width: 50%;
+  height: 100%;
+  background: #6f01c4;
+  /* background-image: url("https://cloud.icons8.com/apps/files_sharing/publicpreview/kseETBxsodP7DWo?file=/29_Hand%20with%20phone%2004.png&fileId=237396&x=1920&y=623&a=true")  */
+}
+
+.il {
+  position: relative;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  font-size: 5vw;
+  overflow: hidden;
+
+  letter-spacing: 0.1em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: white;
+  text-shadow: 6px 6px #ff1f8f, 15px 15px #000000;
+}
+
+.image-hand {
+  position: absolute;
+  right: -25%;
+  top: 40%;
+  z-index: 100;
+  max-width: 100%;
+  display: block;
+  height: auto;
+  transform: scale(0.6);
+}
+
+.linktoShare {
+  color: black;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.textLink {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: 3px solid currentColor;
+  padding: calc(var(--size-bezel) * 1) var(--size-bezel);
+  color: currentColor;
+  background: transparent;
+  border-radius: var(--size-radius);
+}
+
+.card {
+  overflow: hidden;
+  margin-left: 5vw;
+  width: 75%;
+  background: var(--color-background);
+  padding: calc(4 * var(--size-bezel));
+  margin-top: calc(4 * var(--size-bezel));
+  border-radius: var(--size-radius);
+  border: 3px solid var(--color-shadow, currentColor);
+  box-shadow: 0.5rem 0.5rem 0 var(--color-shadow, currentColor);
+}
+.upvote-buttons{
+display: flex;
+flex-direction: column;
+}
+
+.button-vote2{
+  margin-top: 10%;
+}
+.wellHeadings{
+  display: flex;
+  align-items: center;
+}
+.wellHeadings h1{
+  display: inline-block;
+}
+.wellHeadings h3{
+  display: inline-block;
+}
+.wellHeadings h5{
+  display: inline-block;
+}
+.linktoShareDate h5{
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

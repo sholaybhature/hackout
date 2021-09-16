@@ -8,8 +8,8 @@ import Map from './map'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useHistory } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom'
+import { Alert, AlertTitle } from '@material-ui/lab';
 const useStyles = makeStyles((theme) => ({
   buttonSpace: {
     marginTop: "6%",
@@ -22,51 +22,14 @@ const useStyles = makeStyles((theme) => ({
     width: "23.25ch",
     height: "5vh",
   },
+  alertSpace: {
+    position: 'absolute',
+    top: "1.69%",
+    left: "46%",
+  }
 }));
 
 export default function Home() {
-  //   const [latitude, setLatitude] = useState(20.5937)
-  //   const [longitude, setLongitude] = useState(78.9629)
-  //   const [changeLocation, setChangeLocation] = useState(false)
-
-  //   const classes = useStyles();
-
-  //   return (
-  //     <div className="App">
-  //       <div className="grid-home">
-  //         <div className="grid-item">
-  //           <MiniDrawer />
-  //         </div>
-
-  //         <div className="grid-item">
-  //           <h1 className="Heading-Text">
-  //             DISREPAIR.IO
-  //             </h1>
-
-  //           <div className="home-text">
-  //             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget ti
-  //             </div>
-
-  //           <div className="grid2">
-  //             <div className="grid2-item1">
-  //               <div></div>
-  //               <Fields />
-  //               <div className="button-align">
-  //                 <Button
-  //                   variant="outlined"
-  //                   color="primary"
-  //                   onClick={() => navigator.geolocation.getCurrentPosition(function (position) {
-  //                     // console.log(position.coords.latitude);
-  //                     setLatitude(position.coords.latitude)
-  //                     setLongitude(position.coords.longitude)
-  //                     setChangeLocation(true)
-  //                     // console.log(position.coords.longitude);
-  //                   })}
-  //                   className={classes.buttonSpace}>
-  //                   <div className="field-text">
-  //                     Get Location
-  //                       </div>
-  //                 </Button>
 
   const classes = useStyles();
   const [latitude, setLatitude] = useState(20.5937)
@@ -80,6 +43,7 @@ export default function Home() {
   const [imgurl, setImg] = React.useState('');
   const [resData, setResData] = React.useState();
   const [showPopUp, setShowPopUp] = React.useState(false);
+  const [showErrorPopUp, setErrorPopUp] = React.useState(false);
 
   let history = useHistory();
 
@@ -91,7 +55,11 @@ export default function Home() {
   }
 
   const formSubmit = () => {
-    console.log(lat, long, name, dis)
+    if (!name || !dis || !lat || !long || !latitude || !longitude){
+      console.log(1)
+      setErrorPopUp(true)
+      return
+    }
     fetch("http://localhost:8000/api/post/", {
       method: "post",
       headers: {
@@ -107,13 +75,15 @@ export default function Home() {
         variant: dis
       })
     })
-    .then(res => res.json()).then((repos) => {
-      setResData(repos)
-      setShowPopUp(true)
-      history.push(`/location/${repos.id}`);
-    });
+      .then(res => res.json()).then((repos) => {
+        setResData(repos)
+        setShowPopUp(true)
+        // setTimeout(() => {
+        history.push(`/location/${repos.id}`);
+        // history.push('/event')
+        // }, 1000)
+      });
   }
-
   console.log(resData)
   return (
     <div className="App">
@@ -126,13 +96,13 @@ export default function Home() {
           <h1 className="Heading-Text">DISREPAIR.IO</h1>
 
           <div className="home-text">
-          Disrepair.IO is a public infrastructure repository with the aim
-          to collate public complaints of disrepairs hoping that a
-          collective voice brings about ground reality changes.
-          <br></br>
-          <br></br>
-          Fill in the following details then
-          click on the map to mark the location and submit to report any disrepair.
+            Disrepair.IO is a public infrastructure repository with the aim
+            to collate public complaints of disrepairs hoping that a
+            collective voice brings about ground reality changes.
+            <br></br>
+            <br></br>
+            Fill in the following details then
+            click on the map to mark the location and submit to report any disrepair.
           </div>
 
           <div className="grid2">
@@ -199,7 +169,7 @@ export default function Home() {
                 >
                   <div className="field-text">
                     SUBMIT
-                    </div>
+                  </div>
                 </Button>
               </div>
             </div>
@@ -226,8 +196,14 @@ export default function Home() {
         </div>
         <div className="footer">
           A crowdsourced initiative.
-          </div>
+        </div>
       </div>
+      {showPopUp &&
+        <Alert severity="success" className={classes.alertSpace}>Thanks for the request!</Alert>
+      }
+      {showErrorPopUp &&
+        <Alert severity="error" className={classes.alertSpace}>Please fill the details.</Alert>
+      }
     </div>
   )
 }

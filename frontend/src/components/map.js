@@ -3,6 +3,7 @@ import DeckGL from '@deck.gl/react';
 import { FlyToInterpolator } from 'deck.gl';
 import { LineLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import { StaticMap } from 'react-map-gl';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 // const MAPBOX_ACCESS_TOKEN = 'your_mapbox_token';
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3AxbmFsY29yZCIsImEiOiJja2g3ZWFsaG4wM2Z6MnRuc2NjYXhtZHB5In0.S4-p_UNU2crlAlmNafjLow';
@@ -58,6 +59,8 @@ export default function Map(props) {
         setPointData(repos)
         setDataReady(true)
       });
+
+      
 
   }, [])
 
@@ -133,41 +136,7 @@ export default function Map(props) {
           </DeckGL>
         </div>
         :
-        <DeckGL
-          initialViewState={initialViewState}
-          controller={true}
-          layers={[
-            new ScatterplotLayer({
-              id: 'scatterplot',
-              data,
-              getPosition: d => [42.45, 37.78],
-              getRadius: 500000,
-              getFillColor: [255, 255, 0],
-              // Enable picking
-              pickable: true,
-              // Update app state
-              // onHover: info => setHoverInfo(info)
-            }),
-          ]}
-          onClick={(info, event) => {
-            setlayerState([])
-            setlayerState(oldArray => [...oldArray,
-            new ScatterplotLayer({
-              id: 'scatterplot',
-              data,
-              // getPosition: info['coordinate'],
-              getPosition: info['coordinate'],
-              getRadius: 100000,
-              getFillColor: [255, 255, 0],
-              // Enable picking
-              pickable: true,
-              // Update app state
-              // onHover: info => setHoverInfo(info)
-            })]);
-          }}
-        >
-          <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
-        </DeckGL>
+        <Skeleton animation="wave" variant="rect" width={"100%"} height={"100%"} />
       }
     </div>
   );

@@ -3,7 +3,7 @@ import DeckGL from '@deck.gl/react';
 import { FlyToInterpolator } from 'deck.gl';
 import { LineLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import { StaticMap } from 'react-map-gl';
-
+import Skeleton from '@material-ui/lab/Skeleton';
 import MiniDrawer from './navbar'
 import '../App.css'
 
@@ -41,7 +41,6 @@ export default function MapPage({ data }) {
   const [pointData, setPointData] = useState([]);
   const [dataReady, setDataReady] = useState(false);
   const [hotData, setHotData] = useState([])
-
   useEffect(() => {
     fetch("http://localhost:8000/api/list/")
       .then(res => res.json())
@@ -49,14 +48,24 @@ export default function MapPage({ data }) {
         setPointData(repos)
         setDataReady(true)
       });
-    // fetch("http://127.0.0.1:8000/api/list/?filter=upvotes")
-    //   .then(res => res.json())
-    //   .then((repos) => {
-    //     setHotData(repos)
-    //   });
-
   }, [])
-
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setInitialViewState({
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude,
+          zoom: 12,
+          pitch: 0,
+          bearing: 0,
+          transitionDuration: 3000,
+          transitionInterpolator: new FlyToInterpolator()
+        })
+      })
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+  
   const colors = {
     'RD': [95, 23, 219, 100],
     'SL': [17, 205, 216, 100],
@@ -88,12 +97,9 @@ export default function MapPage({ data }) {
                   id: 'scatterplot',
                   data: pointData,
                   getPosition: d => [d.longitude, d.latitude],
-                  getRadius: d => [d.radius * 1000],
+                  getRadius: d => [d.radius * 100],
                   getFillColor: d => colors[d.variant],
-                  // Enable picking
                   pickable: true,
-                  // Update app state
-                  // onHover: info => setHoverInfo(info)
                 }),
               ]}
               onClick={(info, event) => {
@@ -101,50 +107,12 @@ export default function MapPage({ data }) {
               }}
 
             >
-              {/* {hoverInfo.object && (
-              <div style={{ position: 'absolute', zIndex: 1, pointerEvents: 'none', left: hoverInfo.x, top: hoverInfo.y }}>
-                { hoverInfo.object.message}
-              </div>
-            )} */}
               <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
             </DeckGL>
           </div>
           :
-          <DeckGL
-            initialViewState={initialViewState}
-            controller={true}
-            layers={[
-              new ScatterplotLayer({
-                id: 'scatterplot',
-                data,
-                getPosition: d => [42.45, 37.78],
-                getRadius: 500000,
-                getFillColor: [255, 255, 0],
-                // Enable picking
-                pickable: true,
-                // Update app state
-                // onHover: info => setHoverInfo(info)
-              }),
-            ]}
-            onClick={(info, event) => {
-              // setlayerState([])
-              // setlayerState(oldArray => [...oldArray,
-              // new ScatterplotLayer({
-              //   id: 'scatterplot',
-              //   data,
-              //   // getPosition: info['coordinate'],
-              //   getPosition: info['coordinate'],
-              //   getRadius: 100000,
-              //   getFillColor: [255, 255, 0],
-              //   // Enable picking
-              //   pickable: true,
-              //   // Update app state
-              //   // onHover: info => setHoverInfo(info)
-              // })]);
-            }}
-          >
-            <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
-          </DeckGL>
+          <Skeleton animation="wave" variant="rect" width={"100%"} height={"100%"} />
+            // <h1>Loading...</h1>
         }
       </div>
       <div className='footer'>

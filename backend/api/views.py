@@ -15,16 +15,21 @@ from geopy.point import Point
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic 
 
+# Get familiar with http post/put/get etc and how an api works.
 
+# This is inheriting a class which contains the generic view of a list api. 
+# Queryset  gets the data, serializer transforms the data. Filterset_fields allows if the user wants to filter the specified fields. 
 class LocationList(generics.ListAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
     filterset_fields = ('latitude', 'longitude', 'variant', 'radius')
 
+# This is  inheriting a class which contains the generic view of a get/put/delete api. 
 class LocationUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
 
+# This is  inheriting a class which contains the generic view of a creating a new object. 
 class LocationCreate(generics.CreateAPIView):
     serializer_class = LocationSerializer
 
@@ -107,7 +112,9 @@ class LocationCreate(generics.CreateAPIView):
             #     index.save() 
            
             serializer.save()
+            # this returns a successful http response that with the data provided, a new location has been created
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
+        # this returns a http response with error that the data is galat
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

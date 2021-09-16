@@ -40,7 +40,7 @@ const Fields = params => {
   };
 
   return (
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.root}  autoComplete="off">
             <TextField
               id="filled-basic"
               label={<span className="button_text">Full Name</span>}
